@@ -8,6 +8,8 @@ namespace Drippyz.Data.Services
     public class ProductsService : EntityBaseRepository<Product>, IProductsService
     {
         private readonly AppDbContext _context;
+
+        
         public ProductsService(AppDbContext context) : base(context)
         {
             _context = context;
