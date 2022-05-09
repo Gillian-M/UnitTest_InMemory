@@ -1,0 +1,69 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Product Details";
+}
+<body class="drip">
+    <div class="row">
+
+
+        <div class="col-md-10 offset-2">
+            <div class="card mb-3" style="max-width: 900px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @Model.Name
+
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 BPink">
+                       @*<img src="@Model.ImageURL" width="100%" alt="@Model.Name">*@
+                        <img src="~/@Model.ImageURL" alt="@Model.Name"/>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@Model.Description</p>
+                            <p class="card-text">
+                                <b>Store: </b>
+                                <a asp-controller="Stores" asp-action="Details" asp-route-id="@Model.StoreId">@Model.Store.Name</a>
+                            </p>
+                            <p class="card-text"><b>Product type: </b>@Model.ProductCategory</p>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                    Back To List
+                                </a>
+                                <a class="btn btn-success-pink-2 text-white" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+<div>
+
+    @*
+<div class= "col-1"></div>
+<div class= "col-3"></div>
+<img src="~/@Model.ImageURL"/>*@
+</div> 
+
+</div>  
+
+
+
+
+
+</body>
+
+
