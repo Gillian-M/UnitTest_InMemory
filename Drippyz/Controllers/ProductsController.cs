@@ -17,12 +17,23 @@ namespace Drippyz.Controllers
         //declare app db context 
         private readonly IProductsService _service;
         private IWebHostEnvironment _environment;
+        private AppDbContext context;
+
         //constructor
 
         public ProductsController(IProductsService service, IWebHostEnvironment environment)
         {
             _service = service;
             _environment = environment;
+        }
+
+        public ProductsController(AppDbContext context)
+        {
+            this.context = context;
+        }
+
+        public ProductsController(ProductsService productsService)
+        {
         }
 
         //default action result 
@@ -49,6 +60,11 @@ namespace Drippyz.Controllers
 
             return View("Index", allProducts);
 
+        }
+
+        public Task Create(object product)
+        {
+            throw new NotImplementedException();
         }
 
         //Action Get request

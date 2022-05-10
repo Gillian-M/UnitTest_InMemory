@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assert = NUnit.Framework.Assert;
 
 namespace UnitTestDrippyz_1
 {
@@ -50,6 +51,31 @@ namespace UnitTestDrippyz_1
         }
 
 
+        [Test, Order(2)]
+        public void AddNewProductAsync_WithoutResponse_Test()
+        {
+            var result = productsService.GetProductByIdAsync(100);
+
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test, Order(3)]
+        public void AddNewProductAsync_WithoutException_Test()
+        {
+            var newProduct = new NewProductVM()
+            {
+                Name = "Without Ice cream"
+            };
+
+            var result = productsService.AddNewProductAsync(newProduct);
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Id, Is.Not.Null);
+        }
+
+    
+
+
 
         //Destory database after testing 
 
@@ -63,7 +89,7 @@ namespace UnitTestDrippyz_1
             if (!context.Products.Any())
             {
                 context.Products.AddRange(new List<Product>()
-                   {
+                    {
 
                         new Product()
                         {
@@ -71,20 +97,18 @@ namespace UnitTestDrippyz_1
                             Name = "Vanilla",
                             Description = "500ML Home made ice cream.",
                             Price = 11.00,
-                            ImageURL = "~/images/product-1.png",
+                            ImageURL = "https://sample/images/products/product-1",
                             ProductCategory = ProductCategory.Bar,
                             StoreId = 1
-
-
-            },
+                        },
 
                         new Product()
                         {
 
-                            Name = "Chocolate",
+                            Name = "Chocolte",
                             Description = "500ML Home made Chocolate ice cream.",
                             Price = 12.00,
-                            ImageURL = "~/images/product-2.png",
+                            ImageURL = "https://sample/images/products/product-2",
                             ProductCategory = ProductCategory.Bar,
                             StoreId = 1
 
@@ -96,5 +120,3 @@ namespace UnitTestDrippyz_1
     }
 
 }
-
-
